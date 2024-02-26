@@ -1,0 +1,53 @@
+@startuml
+!theme plain
+class Users {
+  login : string
+  password : string
+  role : string
+  api_key : string
+  --
+  +addBookToFavorite(int bookId) : Book
+  +removeBookFromFavorite(int bookId) : void
+  +getFavorite() : Book[]
+}
+
+class Books {
+  name : string
+  --
+  +addBook(int bookId) : Book
+  +removeBook(int bookId) : void
+  +getBook(int bookId) : Book
+  +getAllBooks() : Book[]
+  +csvExport() : Response
+}
+
+class Authors {
+  name : string
+}
+
+class Genres {
+  genre : string
+}
+
+class BookAuthors {
+  + book_id : int
+  + author_id : int
+}
+
+class BookGenres {
+  + book_id : int
+  + genre_id : int
+}
+
+class UserFavorites {
+  + user_id : int
+  + book_id : int
+}
+
+Users "1" -- "N" UserFavorites : has
+Books "1" - "N" UserFavorites : has
+Books "1" -- "N" BookAuthors : has
+Authors "1" - "N" BookAuthors : has
+Books "1" -- "N" BookGenres : has
+Genres "1" - "N" BookGenres : has
+@enduml

@@ -1,0 +1,57 @@
+@startuml
+!theme plain
+entity "Users" as users {
+  PK | id : INT
+  --
+  login : VARCHAR(100)
+  password : VARCHAR(100)
+  role : VARCHAR(50)
+  api_key : VARCHAR(100)
+}
+
+entity "Books" as books {
+  PK | id : INT
+  --
+  name : VARCHAR(100)
+}
+
+entity "Authors" as authors {
+  PK | id : INT
+  --
+  name : VARCHAR(100)
+}
+
+entity "Genres" as genres {
+  PK | id : INT
+  --
+  genre : VARCHAR(100)
+}
+
+entity "BookAuthors" as bookauthors {
+  PK | id : INT
+  --
+  FK | book_id : INT
+  FK | author_id : INT
+}
+
+entity "BookGenres" as bookgenres {
+  PK | id : INT
+  --
+  FK | book_id : INT
+  FK | genre_id : INT
+}
+
+entity "UserFavorites" as userfavorites {
+  PK | id : INT
+  --
+  FK | user_id : INT
+  FK | book_id : INT
+}
+
+users -- userfavorites : "1:N"
+books - userfavorites : "1:N"
+books -- bookauthors : "1:N"
+authors - bookauthors : "1:N"
+books -- bookgenres : "1:N"
+genres - bookgenres : "1:N"
+@enduml
