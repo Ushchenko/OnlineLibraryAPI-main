@@ -1,5 +1,5 @@
 @startuml
-!theme plain
+!theme toy
 class Users {
   login : string
   password : string

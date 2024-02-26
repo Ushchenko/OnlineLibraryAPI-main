@@ -1,5 +1,5 @@
 @startuml
-!theme plain
+!theme mars
 entity "Users" as users {
   PK | id : INT
   --
