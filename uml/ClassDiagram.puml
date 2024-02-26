@@ -1,5 +1,5 @@
 @startuml
-!theme toy
+!theme mars
 class Users {
   login : string
   password : string
